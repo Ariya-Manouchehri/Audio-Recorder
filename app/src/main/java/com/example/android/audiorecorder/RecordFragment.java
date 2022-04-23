@@ -65,7 +65,7 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.play_list:
-                getFragmentManager().beginTransaction().replace(R.id.my_container,new PlaylistFragment(),"PlaylistFragment").addToBackStack(getTag()).commit();
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in,R.anim.fade_out,R.anim.fade_in,R.anim.slide_out).replace(R.id.my_container,new PlaylistFragment(),"PlaylistFragment").addToBackStack(getTag()).commit();
                 break;
         }
     }
