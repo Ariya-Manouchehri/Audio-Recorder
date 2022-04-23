@@ -3,19 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Audio-Recorder/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26614583333333336" />
         <entry key="..\:/Audio-Recorder/app/src/main/res/drawable/bg.xml" value="0.26614583333333336" />
         <entry key="..\:/Audio-Recorder/app/src/main/res/drawable/bg_bottomsheet.xml" value="0.24259259259259258" />
         <entry key="..\:/Audio-Recorder/app/src/main/res/drawable/bg_play_pause.xml" value="0.24259259259259258" />
         <entry key="..\:/Audio-Recorder/app/src/main/res/drawable/bg_playlist.xml" value="0.26614583333333336" />
+        <entry key="..\:/Audio-Recorder/app/src/main/res/drawable/bg_playlist_item.xml" value="0.26614583333333336" />
         <entry key="..\:/Audio-Recorder/app/src/main/res/drawable/bg_recordbtn.xml" value="0.26614583333333336" />
         <entry key="..\:/Audio-Recorder/app/src/main/res/drawable/bottomsheet_layout.xml" value="0.26614583333333336" />
         <entry key="..\:/Audio-Recorder/app/src/main/res/drawable/ic_baseline_pause_24.xml" value="0.24259259259259258" />
         <entry key="..\:/Audio-Recorder/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.24259259259259258" />
         <entry key="..\:/Audio-Recorder/app/src/main/res/drawable/ic_baseline_playlist_play_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Audio-Recorder/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
         <entry key="..\:/Audio-Recorder/app/src/main/res/layout/activity_main.xml" value="0.12708333333333333" />
         <entry key="..\:/Audio-Recorder/app/src/main/res/layout/bottomsheet_layout.xml" value="0.25" />
         <entry key="..\:/Audio-Recorder/app/src/main/res/layout/fragment_playlist.xml" value="0.25" />
         <entry key="..\:/Audio-Recorder/app/src/main/res/layout/fragment_record.xml" value="0.25" />
+        <entry key="..\:/Audio-Recorder/app/src/main/res/layout/playlist_item.xml" value="0.25" />
       </map>
     </option>
   </component>

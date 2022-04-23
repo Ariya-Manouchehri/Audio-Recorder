@@ -72,7 +72,7 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
 
     private void stopRecording() {
         valueAnimator.cancel();
-        record_btn.setBackgroundColor(Color.parseColor(String.valueOf(R.color.purple_500)));
+        record_btn.setBackgroundColor(Color.rgb(0,150,136));
         record_btn.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.recordbtn_anim));
         record_timer.stop();
         record_timer.setBase(SystemClock.elapsedRealtime());
