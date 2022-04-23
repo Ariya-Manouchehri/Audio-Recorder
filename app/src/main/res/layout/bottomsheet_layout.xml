@@ -8,6 +8,8 @@
     app:behavior_peekHeight="50dp"
     android:id="@+id/bottom_sheet"
     android:background="@drawable/bg_bottomsheet"
+    android:clickable="true"
+    android:focusable="true"
     android:padding="5dp">
 
     <TextView

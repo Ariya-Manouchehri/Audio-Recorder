@@ -45,12 +45,11 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root_view = inflater.inflate(R.layout.fragment_record, container, false);
+        init(root_view);
         return root_view;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    private void init(View view) {
         record_play_list = view.findViewById(R.id.play_list);
         record_timer = view.findViewById(R.id.timer);
         record_btn = view.findViewById(R.id.record_btn);
@@ -94,6 +93,7 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
     private void startRecording() {
         record_btn.getAnimation().cancel();
         record_timer.setBase(SystemClock.elapsedRealtime());
+        record_btn.setText("stop");
 
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -124,7 +124,16 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
         valueAnimator.start();
-        record_btn.setText("stop");
         isRecording = true;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    if (recorder!=null && isRecording){
+        recorder.stop();
+        recorder.release();
+        recorder=null;
+    }
     }
 }

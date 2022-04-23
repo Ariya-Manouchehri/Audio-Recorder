@@ -13,5 +13,8 @@
     <color name="start_gradient">#D9F1EF</color>
     <color name="center_gradiant">#e0f2f1</color>
     <color name="end_gradient">#D9F1EF</color>
+    <color name="start_gradiant_playlist_item">#b2dfdb</color>
+    <color name="center_gradiant_playlist_item">#80cbc4</color>
+    <color name="end_gradient_playlist_item">#b2dfdb</color>
 
 </resources>
