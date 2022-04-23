@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -23,12 +24,19 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class RecordFragment extends Fragment implements View.OnClickListener {
     private ImageButton record_play_list;
     private Chronometer record_timer;
     private Button record_btn;
     private boolean isRecording = false;
     private ValueAnimator valueAnimator;
+    private MediaRecorder recorder;
+    private String path;
 
     public RecordFragment() {
     }
@@ -46,6 +54,7 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         record_play_list = view.findViewById(R.id.play_list);
         record_timer = view.findViewById(R.id.timer);
         record_btn = view.findViewById(R.id.record_btn);
+        path = getActivity().getExternalFilesDir("/").getAbsolutePath();
 
         record_btn.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.recordbtn_anim));
 
@@ -74,6 +83,8 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         valueAnimator.cancel();
         record_btn.setBackgroundColor(Color.rgb(0,150,136));
         record_btn.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.recordbtn_anim));
+        recorder.stop();
+        recorder.release();
         record_timer.stop();
         record_timer.setBase(SystemClock.elapsedRealtime());
         record_btn.setText("record");
@@ -83,7 +94,25 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
     private void startRecording() {
         record_btn.getAnimation().cancel();
         record_timer.setBase(SystemClock.elapsedRealtime());
-        record_timer.start();
+
+        recorder = new MediaRecorder();
+        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss", Locale.US);
+        Date now = new Date();
+        String name = "Recording " + simpleDateFormat.format(now) + ".3gp";
+
+        recorder.setOutputFile(path+"/"+name);
+        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+
+        try {
+            recorder.prepare();
+            recorder.start();
+            record_timer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         valueAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), ContextCompat.getColor(getActivity(), R.color.red_200), ContextCompat.getColor(getActivity(), R.color.red_500), ContextCompat.getColor(getActivity(), R.color.red_700));
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override

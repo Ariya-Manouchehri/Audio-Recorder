@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
+import java.io.File;
+
 public class PlaylistFragment extends Fragment implements View.OnClickListener {
     private RecyclerView recyclerView;
     private BottomSheetBehavior behavior;
@@ -23,6 +25,10 @@ public class PlaylistFragment extends Fragment implements View.OnClickListener {
     private ImageButton play_pause;
     private SeekBar seekBar;
     private View bottom_sheet;
+    private String path;
+    private RecyclerViewAdapter adapter;
+    private File directory;
+    private File[] files;
 
     public PlaylistFragment() {
     }
@@ -37,6 +43,11 @@ public class PlaylistFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        path = getActivity().getExternalFilesDir("/").getAbsolutePath();
+        directory = new File(path);
+        files = directory.listFiles();
+        adapter = new RecyclerViewAdapter(files);
+
         recyclerView = view.findViewById(R.id.recyclerView_list);
         bottom_sheet = view.findViewById(R.id.bottom_sheet);
         record_name = view.findViewById(R.id.record_name);
@@ -47,6 +58,7 @@ public class PlaylistFragment extends Fragment implements View.OnClickListener {
         play_pause.setOnClickListener(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
